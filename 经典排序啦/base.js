@@ -113,3 +113,5 @@ function selection(arr){
 	return arr;
 }
 console.log('selection: ', selection(disorderArr(15)));
+
+// 

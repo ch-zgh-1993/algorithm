@@ -69,7 +69,6 @@ function quick(arr, left, right){ // 升序
 		quick(arr, left, partitionIndex - 1);
 		quick(arr, partitionIndex + 1, right);
 	}
-
 	return arr;
 }
 function partition(arr, left, right){ // 分区操作
@@ -114,4 +113,5 @@ function selection(arr){
 }
 console.log('selection: ', selection(disorderArr(15)));
 
-// 
+// 插入排序 (Insertion Sort)
+// 简单直观的排序方式，通过构建有序序列，对未排序的数据，在已排序序列中从后向前扫描，找到相应位置并插入。

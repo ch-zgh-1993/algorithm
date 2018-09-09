@@ -114,4 +114,30 @@ function selection(arr){
 console.log('selection: ', selection(disorderArr(15)));
 
 // 插入排序 (Insertion Sort)
-// 简单直观的排序方式，通过构建有序序列，对未排序的数据，在已排序序列中从后向前扫描，找到相应位置并插入。
+// 简单直观的排序方式，通过构建有序序列，对未排序的数据，在已排序序列中从后向前扫描，找到相应位置并插入。(采用in-place在数组上实现。)
+// 
+// 从第一个元素开始，认为已排序，取下一个元素比较，若大于/小于新元素，则将该元素移动到下一位置/前一位置。
+// 直到找到等于或小于/大于新元素，将新元素插入到这个位置。
+// 重复步骤。
+// 
+function insertion(arr){	
+	console.log(arr);
+	for(let i = 0; i < arr.length; i++){
+		if(i > 0){
+			let temp = arr[i];
+			for(let j = i - 1; j >= 0; j--){
+				if(temp < arr[j]){	// 升序
+					arr[j+1] = arr[j];
+					if(j === 0){
+						arr[0] = temp;
+					}
+				}else{
+					arr[j+1] = temp;
+					break;
+				}
+			}
+		}
+	}
+	return arr;
+}
+console.log('insertion: ', insertion(disorderArr(10)));

@@ -120,12 +120,14 @@ console.log('selection: ', selection(disorderArr(15)));
 // 直到找到等于或小于/大于新元素，将新元素插入到这个位置。
 // 重复步骤。
 // 
+// 时间复杂度： O(n2) O(n2) O(n) O(1) 稳定
+// 
 function insertion(arr){	
-	console.log(arr);
 	for(let i = 0; i < arr.length; i++){
 		if(i > 0){
 			let temp = arr[i];
 			for(let j = i - 1; j >= 0; j--){
+				// console.count('join');
 				if(temp < arr[j]){	// 升序
 					arr[j+1] = arr[j];
 					if(j === 0){
@@ -140,4 +142,21 @@ function insertion(arr){
 	}
 	return arr;
 }
+function insertionSort(arr) {
+    var len = arr.length;
+    var preIndex, current;
+    for (var i = 1; i < len; i++) {
+        preIndex = i - 1;
+        current = arr[i];
+        while (preIndex >= 0 && arr[preIndex] > current) {
+        	// console.count('add');
+            arr[preIndex + 1] = arr[preIndex];
+            preIndex--;
+        }
+        arr[preIndex + 1] = current;
+    }
+    return arr;
+}
+let arr = [11,13,94,24,24,31,53,54,47,32,89,79,82,73];
+// console.log('看看自己写的和别人写的效率: 70----59...哎，不行呀，', insertion([1]), insertionSort(arr));
 console.log('insertion: ', insertion(disorderArr(10)));

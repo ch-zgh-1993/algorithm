@@ -2,17 +2,17 @@
 * @Author: Zhang Guohua
 * @Date:   2018-09-02 10:42:43
 * @Last Modified by:   zgh
-* @Last Modified time: 2018-09-21 09:01:43
+* @Last Modified time: 2018-10-10 15:04:07
 * @Description: create by zgh
 * @GitHub: Savour Humor
 */
 // 基本排序总结
 // 
-// 1. 冒泡
-// 2. 快速
-// 3. 选择
-// 4. 插入
-// 5. 希尔
+// 1. 冒泡   ---
+// 2. 快速   ---
+// 3. 选择   ---
+// 4. 插入   ---
+// 5. 希尔   ---
 // 6. 基数
 // 7. 鸡尾酒
 // 8. 桶
@@ -168,3 +168,41 @@ function insertionSort(arr) {
 let arr = [11,13,94,24,24,31,53,54,47,32,89,79,82,73];
 // console.log('看看自己写的和别人写的效率: 70----59...哎，不行呀，', insertion([1]), insertionSort(arr));
 console.log('insertion: ', insertion(disorderArr(10)));
+
+
+// 希尔排序(Shell Sort)
+// Shell发明，第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。
+// 
+// 先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：
+// 选择一个增量序列t1，t2，…，tk，其中ti>tj，tk=1；
+// 按增量序列个数k，对序列进行k 趟排序；
+// 每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。
+// 
+// 
+//  时间复杂度: O(n1.3) O(n2) O(n2) O(1) 不稳定。
+// 
+// 评价: 希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版）》的合著者Robert Sedgewick提出的。　
+// 
+function shellSort(arr){
+	let len = arr.length,
+		temp,
+		gap = 1;
+	while (gap < len/3) { // 定义间隔
+		gap = gap*3 + 1;
+	}
+	console.log(arr)
+	for(gap; gap > 0; gap = Math.floor(gap/3)){
+		console.count('1');
+		for(let i = gap; i < len; i++){
+			temp = arr[i];
+			for(var j = i -gap; j >= 0 && arr[j] > temp; j -= gap){
+				arr[j + gap] = arr[j];
+			}
+			arr[j + gap] = temp;
+		}	
+		console.log(arr.toString());
+	}
+	return arr;
+}
+
+console.log('shellSort: ', shellSort(disorderArr(10)));

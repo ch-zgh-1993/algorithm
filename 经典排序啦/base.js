@@ -2,7 +2,7 @@
 * @Author: Zhang Guohua
 * @Date:   2018-09-02 10:42:43
 * @Last Modified by:   zgh
-* @Last Modified time: 2018-10-10 15:04:07
+* @Last Modified time: 2018-10-16 21:05:35
 * @Description: create by zgh
 * @GitHub: Savour Humor
 */
@@ -171,7 +171,7 @@ console.log('insertion: ', insertion(disorderArr(10)));
 
 
 // 希尔排序(Shell Sort)
-// Shell发明，第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。
+// Shell发明，第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。不需要大量空间。
 // 
 // 先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：
 // 选择一个增量序列t1，t2，…，tk，其中ti>tj，tk=1；
@@ -181,26 +181,28 @@ console.log('insertion: ', insertion(disorderArr(10)));
 // 
 //  时间复杂度: O(n1.3) O(n2) O(n2) O(1) 不稳定。
 // 
-// 评价: 希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版）》的合著者Robert Sedgewick提出的。　
+// 评价: 希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版）》的合著者Robert Sedgewick提出的。
+// 
+// 
+// 
+// 排序思想：
+// 		希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。
 // 
 function shellSort(arr){
 	let len = arr.length,
 		temp,
 		gap = 1;
-	while (gap < len/3) { // 定义间隔
+	while (gap < len/3) { // 定义间隔，间隔最优是有待研究的，目前依据算法上给定的。
 		gap = gap*3 + 1;
 	}
-	console.log(arr)
 	for(gap; gap > 0; gap = Math.floor(gap/3)){
-		console.count('1');
 		for(let i = gap; i < len; i++){
 			temp = arr[i];
 			for(var j = i -gap; j >= 0 && arr[j] > temp; j -= gap){
 				arr[j + gap] = arr[j];
 			}
 			arr[j + gap] = temp;
-		}	
-		console.log(arr.toString());
+		}
 	}
 	return arr;
 }
